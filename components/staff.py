@@ -290,7 +290,7 @@ def staff_page():
 
             print(row_dict)
 
-            st.write(row_dict)
+            # st.write(row_dict)
             # print(data_sql)
            
             if len(data_sql)==0 or 'error' in data_sql: 
@@ -323,7 +323,7 @@ def staff_page():
             del chunks["syllabus.txt"]
             dep=operation.preprocessing.get_response_of_department_name(data[0][3])
             # st.write(dep)
-            st.write(data[0][3])
+            # st.write(data[0][3])
             if "current department" == dep:
                 dep = operation.dboperation.view_departments_id(data[0][3])
             import re
@@ -333,20 +333,20 @@ def staff_page():
             else:
                 dep = ''
 
-            st.write(dep)
+            # st.write(dep)
             rel_departments=operation.preprocessing.relevent_department(f"{question} {dep}",list(chunks.keys()))
             department_chunks=''
             if rel_departments:
                 for department in rel_departments:
                     department_chunks+=str(operation.fileoperations.read_from_file(department))
-            st.write(rel_departments)
+            # st.write(rel_departments)
             relevant_chunks_with_department="\n".join(relevant_chunks)+"\n"+department_chunks
             relevant_chunks_with_department=relevant_chunks_with_department.replace("\n","")
             # st.write(relevant_chunks_with_department)
            
             relevant_chunks_with_department = relevant_chunks_with_department+question+"".join(str(row_dict))
             
-            st.write(relevant_chunks_with_department)
+            # st.write(relevant_chunks_with_department)
             # import pandas as pd
             # import os
 
@@ -360,7 +360,7 @@ def staff_page():
             }
 
             df = pd.DataFrame(data_dict)
-            st.write(df)
+            # st.write(df)
             # Define the file path
             file_path = "./data.xlsx"
 
@@ -382,7 +382,7 @@ def staff_page():
     # ✅ Select relevant columns
             priority_map = ["Query", "College", "Department", "Database", "Syllabus"]
             selected_columns = [priority1_pred, priority2_pred]  # Already in category form
-            st.write(selected_columns)
+            # st.write(selected_columns)
 
     # ✅ Prepare filtered data for AI response
             filtered_data = {col: data_dict[col] for col in selected_columns if col in data_dict}
@@ -406,7 +406,7 @@ def staff_page():
             else:
                 st.session_state.heading=operation.chatoperation.add_chat(data[0][0],question,result_text,relevant_chunks_with_department,st.session_state.heading)
             # operation.chatoperation.add_data(data[0][0],st.session_state.heading,question,result_text,relevant_chunks_with_department)
-            #st.rerun()
+            st.rerun()
         
         
         if len(st.session_state.qa_list):
