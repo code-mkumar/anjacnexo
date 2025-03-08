@@ -258,7 +258,7 @@ def staff_page():
             #st.write("**ANJAC AI can make mistakes. Check important info.**")
             st.markdown("**:red[ANJAC AI can make mistakes. Check important info.]**")
         if question:
-            ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
+            data_feed_back=ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
             department_id_in_user_query = operation.preprocessing.get_response_of_department(question)
             st.chat_message("human").text(question)
             keys = ["staff_id", "name", "designation", "department_id"]
@@ -407,7 +407,8 @@ def staff_page():
     current date and time  {current_datetime.strftime("%A, %B %d, %Y, at %I:%M %p").lower()} and {current_datetime.now()}.
     Format your response based on this role prompt: {role_prompt} but don't provide the content inside it. 
     relevent general context into your response: {filtered_data}.
-    department need by the user :{department_id_in_user_query}"""
+    department need by the user :{department_id_in_user_query}.
+    {data_feed_back}"""
 )
 
             result_text = answer

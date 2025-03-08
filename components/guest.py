@@ -156,7 +156,7 @@ def guest_page():
             st.markdown("**:red[ANJAC AI can make mistakes. Check important info.]**")
 
         if question:
-            ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
+            data_feed_back=ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
             # Retrieve relevant chunks
             st.chat_message('user').markdown(question)
             k = 3  
@@ -222,7 +222,7 @@ def guest_page():
             # Query LM Studio for the answer
             
                 
-            result_text = genai.lama.query_lm_studio(question,context)          
+            result_text = genai.lama.query_lm_studio(question,context+data_feed_back)          
             # Store the question and answer in session state
             st.session_state.qa_list.append({'question': question, 'answer': result_text})
 
