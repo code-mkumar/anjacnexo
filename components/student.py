@@ -409,7 +409,7 @@ def welcome_page():
         else:
             st.session_state.heading=operation.chatoperation.add_chat(data[0][0],question,result_text,relevant_chunks_with_department,st.session_state.heading)
         # operation.chatoperation.add_data(data[0][0],st.session_state.heading,question,result_text,relevant_chunks_with_department)
-        st.rerun()
+        # st.rerun()
         
     
 
