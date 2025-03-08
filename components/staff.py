@@ -231,7 +231,19 @@ def staff_page():
         from datetime import datetime
         current_datetime = datetime.now()
         # submit = st.button('Ask the question')
-
+        if len(st.session_state.qa_list):
+            for qa in (st.session_state.qa_list):
+                st.chat_message('user').markdown(f"{qa['question']}")
+                st.chat_message('ai').markdown(f"{qa['answer']}")
+                st.markdown("---")
+            last_qa = st.session_state.qa_list[-1]  # Get the last Q&A pair
+          
+            
+            operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
+            sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
+            selected = st.feedback("thumbs")
+        else:
+            st.header("How can I help you today?")
         if st.button("🎤 Speak your question"):
             spoken_question = operation.speech.recognize_speech()
             if 'sorry' in spoken_question:
@@ -409,19 +421,7 @@ def staff_page():
             st.rerun()
         
         
-        if len(st.session_state.qa_list):
-            for qa in reversed(st.session_state.qa_list):
-                st.chat_message('user').markdown(f"{qa['question']}")
-                st.chat_message('ai').markdown(f"{qa['answer']}")
-                st.markdown("---")
-            last_qa = st.session_state.qa_list[-1]  # Get the last Q&A pair
-          
-            
-            operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
-            sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
-            selected = st.feedback("thumbs")
-        else:
-            st.header("How can I help you today?")
+        
             
 
     elif module == "File Upload and Edit":
