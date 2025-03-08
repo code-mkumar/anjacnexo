@@ -50,7 +50,8 @@ Located in a sprawling one hundred and fifty seven acre campus on the
 Sivakasi -Srivilliputhur  road,  five kilometers  away  from  Sivakasi,  the college  has been 
 serving as a beacon light in the backward a rea of Virudhunagar  District.
 ---
-***working time:***
+college timing
+working time:
 monday to friday 10.00 - 5.00 is working time
 saturday 9.00-1.00 is working time
 
@@ -4353,8 +4354,6 @@ The campus has four in-house studenst hostel halls for both genders.
 ---
 ===Sports===
 A 16-station multi-gym facility has been developed. In addition to this, the campus includes four volleyball courts, two basketball courts, two tennis courts, one badminton court, two cricket grounds, two football fields, three kabaddi courts, one tenni-koi court, two kho-kho courts, as well as facilities for indoor games and yoga.
-
-
 ---
 Internal Mark details for Ayya Nadar janaki Ammal College
 For Ug: internal assessment exam(25),quiz(5),assignment(10).total internal mark is 40 and total external mark is 60.Pass mark of internal is must above 19 and external mark must be above 21.
