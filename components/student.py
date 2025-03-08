@@ -51,12 +51,12 @@ def welcome_page():
                     else:
                         st.warning("Please fill all the fields to submit your feedback.")
                     st.rerun()
-        st.header("Chat History")
+        
         if st.button("new chat"):
             st.session_state.heading=''
             st.session_state.qa_list =[]
         tables = operation.chatoperation.get_user_sessions(data[0][0])
-
+        st.header("Chat History")
         def click(heading):
             table_content = operation.chatoperation.get_chat_history(data[0][0], heading)
             st.session_state.created=1
