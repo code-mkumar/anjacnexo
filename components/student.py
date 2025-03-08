@@ -52,6 +52,9 @@ def welcome_page():
                         st.warning("Please fill all the fields to submit your feedback.")
                     st.rerun()
         st.header("Chat History")
+        if st.button("new chat"):
+            st.session_state.heading=''
+            st.session_state.qa_list =[]
         tables = operation.chatoperation.get_user_sessions(data[0][0])
 
         def click(heading):
