@@ -144,7 +144,7 @@ def guest_page():
         # chunks = operation.preprocessing.chunk_text(f"{collegehistory}\n{departmenthistory}")
         # question = st.chat_input("Ask your question")
         if len(st.session_state.qa_list):
-            last_qa = st.session_state.qa_list  # Get the last Q&A pair
+            last_qa = st.session_state.qa_list[1]  # Get the last Q&A pair
             st.chat_message("user").markdown(last_qa["question"])
             bot_response = st.chat_message("assistant").markdown(last_qa["answer"])
 
