@@ -65,6 +65,8 @@ def predict_and_store(query,dlist):
             last_response=last_entry["answer"]
             print(last_entry,last_response)
             try:
+                conn= create_connection()
+                cursor=conn.cursor()
                 cursor.execute("INSERT INTO history1 (query, response,message) VALUES (?, ?,?);", (last_query, last_response,query))
                 conn.commit()
                 conn.close()
