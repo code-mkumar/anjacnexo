@@ -221,7 +221,8 @@ def welcome_page():
         #st.write("**ANJAC AI can make mistakes. Check important info.**")
         st.markdown("**:red[ANJAC AI can make mistakes. Check important info.]**")
     if question:
-        ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
+        data_from_feed=ml.sentiment_feedback.predict_and_store(question,st.session_state.qa_list)
+        
         department_id_in_user_query = operation.preprocessing.get_response_of_department(question)
         st.chat_message("user").text(question)
         print(data)
@@ -398,7 +399,8 @@ def welcome_page():
         current date and time  {current_datetime.strftime("%A, %B %d, %Y, at %I:%M %p").lower()} and {current_datetime.now()}.
         Format your response based on this role prompt don't provide the content inside it {role_prompt} . 
         relevent general context into your response: {filtered_data}.
-        user needed department_id :{department_id_in_user_query}""")
+        user needed department_id :{department_id_in_user_query}.
+        {data_from_feed}.""")
         # answer = genai.gemini.model.generate_content(f"student name :{data[1]}  prompt:{role_prompt} Answer this question: {question} with results {str(data)}")
         result_text = answer
         #st.chat_message('ai').markdown(result_text)

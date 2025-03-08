@@ -67,7 +67,8 @@ def predict_and_store(query,dlist):
             cursor.execute("INSERT INTO history1 (query, response,message) VALUES (?, ?,?)", (last_query, last_response,query))
             conn.commit()
             conn.close()
-        return f"Follow-up detected. Using previous query: {last_query}"
+        return f"this is feedback from the user"
+    return " "
     
     # else:
     #     # Store the current query-response in the database
