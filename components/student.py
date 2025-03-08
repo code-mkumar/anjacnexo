@@ -243,7 +243,7 @@ def welcome_page():
         #         query = f"SELECT * FROM student_mark_details WHERE department_id = '{data[0][3]}'"
         #     print(query)
         #     data_sql = operation.dboperation.read_sql_query(query)
-        st.write(f"length:{len(data_sql)}")
+        # st.write(f"length:{len(data_sql)}")
         if len(data_sql)==2 or 'error' in data_sql: 
             new_query=genai.lama.backup_sql_query_maker("give the proper sql query without any explaination and other things ended with semicolon. "+combined_prompt,question,data_sql,response)
             print(new_query)
@@ -286,7 +286,7 @@ def welcome_page():
         del chunks["syllabus.txt"]
         dep=operation.preprocessing.get_response_of_department_name(data[3])
         # st.write(dep)
-        st.write(data[3])
+        # st.write(data[3])
         if "current department" == dep:
             dep = operation.dboperation.view_departments_id(data[3])
         import re
@@ -296,7 +296,7 @@ def welcome_page():
         else:
             dep = ''
 
-        st.write(dep)
+        # st.write(dep)
         rel_departments=operation.preprocessing.relevent_department(f"{question} {dep}",list(chunks.keys()))
         department_chunks=''
         if rel_departments:
@@ -348,11 +348,11 @@ def welcome_page():
 # ✅ Select relevant columns
         priority_map = ["Query", "College", "Department", "Database", "Syllabus"]
         selected_columns = [priority1_pred, priority2_pred]  # Already in category form
-        st.write(selected_columns)
+        # st.write(selected_columns)
 
 # ✅ Prepare filtered data for AI response
         filtered_data = {col: data_dict[col] for col in selected_columns if col in data_dict}
-        st.write(filtered_data)
+        # st.write(filtered_data)
         # # Generate response for the question and answer
         # relevent_chunk=operation.preprocessing.get_relevant_chunks(question,chunks)
         # relevent_chunk.append(f"{question}"+str(data_sql))
@@ -373,7 +373,7 @@ def welcome_page():
         #st.chat_message('ai').markdown(result_text)
         # Store the question and answer in session state
         st.session_state.qa_list.append({'question': question, 'answer': result_text})
-        # st.rerun()
+        st.rerun()
         
     if len(st.session_state.qa_list):
         last_qa = st.session_state.qa_list[-1]  # Get the last Q&A pair
