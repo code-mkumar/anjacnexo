@@ -399,9 +399,12 @@ def welcome_page():
         st.rerun()
         
     if len(st.session_state.qa_list):
+        for qa in reversed(st.session_state.qa_list):
+            st.chat_message('user').markdown(f"{qa['question']}")
+            st.chat_message('ai').markdown(f"{qa['answer']}")
+            st.markdown("---")
         last_qa = st.session_state.qa_list[-1]  # Get the last Q&A pair
-        st.chat_message("user").markdown(last_qa["question"])
-        bot_response = st.chat_message("assistant").markdown(last_qa["answer"])
+        
         
         operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
         sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
