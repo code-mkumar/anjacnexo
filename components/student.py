@@ -354,10 +354,10 @@ def welcome_page():
             "Database": str(row_dict),  # Ensure it's a string
             "Syllabus": str(syllabus_chunk[:500]),  # Limit syllabus length
         }
-        import pandas as pd
-        df = pd.DataFrame(data_dict)
-        st.write(df)
-
+        # import pandas as pd
+        # df = pd.DataFrame(data_dict)
+        # st.write(df)
+        st.write(data_dict)
         # Define the file path
         file_path = "./data.xlsx"
 
