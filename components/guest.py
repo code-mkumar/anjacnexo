@@ -143,18 +143,6 @@ def guest_page():
         st.write(f"Hello, {st.session_state.username}!")
         # chunks = operation.preprocessing.chunk_text(f"{collegehistory}\n{departmenthistory}")
         # question = st.chat_input("Ask your question")
-        if len(st.session_state.qa_list):
-            last_qa = st.session_state.qa_list[1]  # Get the last Q&A pair
-            st.chat_message("user").markdown(last_qa["question"])
-            bot_response = st.chat_message("assistant").markdown(last_qa["answer"])
-
-            
-            operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
-            sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
-            selected = st.feedback("thumbs")
-        else:
-            st.header("How can I help you today?")
-
         if st.button("🎤 Speak your question"):
             spoken_question = operation.speech.recognize_speech()
             st.text(f"You said: {spoken_question}")
@@ -240,7 +228,17 @@ def guest_page():
 
             st.rerun()
         
-        
+        if len(st.session_state.qa_list):
+            last_qa = st.session_state.qa_list[-1]  # Get the last Q&A pair
+            st.chat_message("user").markdown(last_qa["question"])
+            bot_response = st.chat_message("assistant").markdown(last_qa["answer"])
+
+            
+            operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
+            sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
+            selected = st.feedback("thumbs")
+        else:
+            st.header("How can I help you today?")
 
 
                 
