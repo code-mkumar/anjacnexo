@@ -1,4 +1,4 @@
-﻿streamlit
+streamlit
 groq
 requests
 pandas
@@ -17,3 +17,4 @@ soundfile
 sounddevice
 scipy
 google.generativeai
+openpyxl

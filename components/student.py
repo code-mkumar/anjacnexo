@@ -380,7 +380,7 @@ def welcome_page():
         st.chat_message("user").markdown(last_qa["question"])
         bot_response = st.chat_message("assistant").markdown(last_qa["answer"])
         
-        # operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
+        operation.speech.speak_text(last_qa["answer"])  # Plays the answer as audio
         sentiment_mapping = [":material/thumb_down:", ":material/thumb_up:"]
         selected = st.feedback("thumbs")
     else:
