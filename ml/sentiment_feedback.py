@@ -64,9 +64,13 @@ def predict_and_store(query,dlist):
             last_query=last_entry["question"]
             last_response=last_entry["answer"]
             print(last_entry,last_response)
-            cursor.execute("INSERT INTO history1 (query, response,message) VALUES (?, ?,?);", (last_query, last_response,query))
-            conn.commit()
-            conn.close()
+            try:
+                cursor.execute("INSERT INTO history1 (query, response,message) VALUES (?, ?,?);", (last_query, last_response,query))
+                conn.commit()
+            except Exception as e:
+                print(e)
+            finally:
+                conn.close()
         return f"this is feedback from the user"
     return " "
     
