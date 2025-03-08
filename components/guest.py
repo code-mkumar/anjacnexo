@@ -222,7 +222,7 @@ def guest_page():
             # Query LM Studio for the answer
             
                 
-            result_text = genai.lama.query_lm_studio(question,context+data_feed_back)          
+            result_text = genai.lama.query_lm_studio(question,data_feed_back if data_feed_back else context)          
             # Store the question and answer in session state
             st.session_state.qa_list.append({'question': question, 'answer': result_text})
 
