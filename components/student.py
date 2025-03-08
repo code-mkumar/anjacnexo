@@ -399,7 +399,7 @@ def welcome_page():
         st.rerun()
         
     if len(st.session_state.qa_list):
-        for qa in reversed(st.session_state.qa_list):
+        for qa in (st.session_state.qa_list):
             st.chat_message('user').markdown(f"{qa['question']}")
             st.chat_message('ai').markdown(f"{qa['answer']}")
             st.markdown("---")
