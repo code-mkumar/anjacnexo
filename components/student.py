@@ -10,10 +10,11 @@ import operation.fileoperations
 import operation.otheroperation
 import operation.preprocessing
 import operation.qrsetter
+import operation.chatoperation
 import genai
 import os
 import ml
-
+from functools import partial
 import operation.speech
 def welcome_page():
     # st.set_page_config(page_title="Anjac_AI", layout="wide")
@@ -21,6 +22,8 @@ def welcome_page():
     
     #operation.dboperation.update_multifactor_status(st.session_state.user_id, st.session_state.multifactor ,secret)  # Update MFA status in the database
     # Sidebar content
+    if "heading" not in st.session_state:
+        st.session_state.heading=''
     with st.sidebar:
         with st.expander(f"Welcome, {data[1]}! 🧑‍💻"):
             st.write("Choose an action:")
@@ -49,15 +52,27 @@ def welcome_page():
                         st.warning("Please fill all the fields to submit your feedback.")
                     st.rerun()
         st.header("Chat History")
+        tables = operation.chatoperation.get_user_sessions(data[0][0])
+
+        def click(heading):
+            table_content = operation.chatoperation.get_chat_history(data[0][0], heading)
+            st.session_state.created=1
+            st.session_state.heading=heading
+            st.session_state.qa_list =[]
+            for question_t,answer_t,time,rel in table_content:
+                st.session_state.qa_list.append({'question': question_t, 'answer': answer_t})
+
+        for table in tables:
+            st.button(table, on_click=partial(click, table))
         # if st.button("Logout"):
         #     st.session_state.authenticated = False
         #     st.session_state.page = "login"
 
         # Display questions and answers in reverse order
-        for qa in reversed(st.session_state.qa_list):
-            st.write(f"**Question:** {qa['question']}")
-            st.write(f"**Answer:** {qa['answer']}")
-            st.write("---")
+        # for qa in reversed(st.session_state.qa_list):
+        #     st.write(f"**Question:** {qa['question']}")
+        #     st.write(f"**Answer:** {qa['answer']}")
+        #     st.write("---")
 
     # Inject custom CSS for the expander
     st.markdown("""
@@ -373,6 +388,11 @@ def welcome_page():
         #st.chat_message('ai').markdown(result_text)
         # Store the question and answer in session state
         st.session_state.qa_list.append({'question': question, 'answer': result_text})
+        if not st.session_state.heading:
+            st.session_state.heading=operation.chatoperation.add_chat(data[0][0],question,result_text,relevant_chunks_with_department)
+        else:
+            st.session_state.heading=operation.chatoperation.add_chat(data[0][0],question,result_text,relevant_chunks_with_department,st.session_state.heading)
+        # operation.chatoperation.add_data(data[0][0],st.session_state.heading,question,result_text,relevant_chunks_with_department)
         st.rerun()
         
     if len(st.session_state.qa_list):
