@@ -170,7 +170,7 @@ def get_relevant_chunks(query, chunks, top_n=1,previous=0,chunk=None):
     if has_nan:
         if chunk :
             return get_relevant_chunks(query,chunk)
-        return " "
+        return []
     # # Get top-N relevant chunks
     # # relevant_indices = cosine_sim[0].argsort()[-top_n:][::-1]
     # cosine_sim = cosine_sim.flatten() 
