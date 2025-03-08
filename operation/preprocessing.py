@@ -168,7 +168,9 @@ def get_relevant_chunks(query, chunks, top_n=1,previous=0,chunk=None):
         return None
     has_nan = np.isnan(cosine_sim).all()
     if has_nan:
-        return get_relevant_chunks(query,chunk)
+        if chunk :
+            return get_relevant_chunks(query,chunk)
+        return " "
     # # Get top-N relevant chunks
     # # relevant_indices = cosine_sim[0].argsort()[-top_n:][::-1]
     # cosine_sim = cosine_sim.flatten() 
