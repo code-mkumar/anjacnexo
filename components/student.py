@@ -357,7 +357,7 @@ def welcome_page():
         # import pandas as pd
         # df = pd.DataFrame(data_dict)
         # st.write(df)
-        st.write(data_dict)
+        # st.write(data_dict)
         # Define the file path
         file_path = "./data.xlsx"
 
@@ -383,7 +383,7 @@ def welcome_page():
 
 # ✅ Prepare filtered data for AI response
         filtered_data = {col: data_dict[col] for col in selected_columns if col in data_dict}
-        # st.write(filtered_data)
+        st.write(filtered_data)
         # # Generate response for the question and answer
         # relevent_chunk=operation.preprocessing.get_relevant_chunks(question,chunks)
         # relevent_chunk.append(f"{question}"+str(data_sql))
