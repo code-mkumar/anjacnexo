@@ -130,6 +130,24 @@
   WHERE smd.student_id = 'MY_STUDENT_ID';
   ```
 
+- *"analysis my mark and give the mark must be take in external? (Replace 'MY_STUDENT_ID' with actual student ID)"*
+```sql
+  SELECT sub.name AS subject_name, smd.quiz1, smd.quiz2, smd.quiz3, 
+        smd.assignment1, smd.assignment2, smd.internal1, smd.internal2, smd.internal3
+  FROM student_mark_detials smd
+  JOIN subject sub ON smd.subject_id = sub.id
+  WHERE smd.student_id = 'MY_STUDENT_ID';
+  ```
+
+- *"my mark in java subject? (Replace 'MY_STUDENT_ID' with actual student ID)"*
+```sql
+  SELECT sub.name AS subject_name, smd.quiz1, smd.quiz2, smd.quiz3, 
+        smd.assignment1, smd.assignment2, smd.internal1, smd.internal2, smd.internal3
+  FROM student_mark_detials smd
+  JOIN subject sub ON smd.subject_id = sub.id
+  WHERE smd.student_id = 'MY_STUDENT_ID';
+  ```
+
 - *"Tell me about my department (Replace 'MY_DEPARTMENT_ID' with actual department ID)"*
 ```sql
   SELECT * 
