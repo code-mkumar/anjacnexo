@@ -1,7 +1,7 @@
 import google.generativeai as genai
 import streamlit as st
 # 
-genai.configure(api_key='AIzaSyBDEtAUaJlBqVHrOa_cu5wdfHYqkicR14A')
+genai.configure(api_key='AIzaSyAvojVtYqoGs6IMgjOTB1TVqlGCR5MxIJw')
 model = genai.GenerativeModel('gemini-2.0-flash')
 
 def get_gemini_response(combined_prompt):
